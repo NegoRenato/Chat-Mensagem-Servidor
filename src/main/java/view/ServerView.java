@@ -72,7 +72,7 @@ public class ServerView {
 				
 				case "cadastrarUsuario":
 					System.out.println("|----------------------------------------------------------------");
-					System.out.println("|operação atualizar recebida com sucesso");
+					System.out.println("|operação cadastrar recebida com sucesso");
 					System.out.println("|" + stringRequest );
 					System.out.println("|----------------------------------------------------------------");
 					servidorController.cadastrarUsuario(clientSocket, request);
@@ -80,7 +80,7 @@ public class ServerView {
 				
 				case "login":
 					System.out.println("|----------------------------------------------------------------");
-					System.out.println("|operação atualizar recebida com sucesso");
+					System.out.println("|operação login recebida com sucesso");
 					System.out.println("|" + stringRequest );
 					System.out.println("|----------------------------------------------------------------");
 					servidorController.logarUsuario(clientSocket, request);
@@ -91,7 +91,7 @@ public class ServerView {
 				
 				case "logout":
 					System.out.println("|----------------------------------------------------------------");
-					System.out.println("|operação atualizar recebida com sucesso");
+					System.out.println("|operação logout recebida com sucesso");
 					System.out.println("|" + stringRequest );
 					System.out.println("|----------------------------------------------------------------");
 					servidorController.logout(clientSocket, request);
@@ -99,7 +99,7 @@ public class ServerView {
 					
 				case "consultarUsuario":
 					System.out.println("|----------------------------------------------------------------");
-					System.out.println("|operação atualizar recebida com sucesso");
+					System.out.println("|operação consultar recebida com sucesso");
 					System.out.println("|" + stringRequest );
 					System.out.println("|----------------------------------------------------------------");
 					servidorController.consultarUsuario(clientSocket, request);
@@ -115,10 +115,42 @@ public class ServerView {
 					
 				case "deletarUsuario":
 					System.out.println("|----------------------------------------------------------------");
-					System.out.println("|operação atualizar recebida com sucesso");
+					System.out.println("|operação deletar recebida com sucesso");
 					System.out.println("|" + stringRequest );
 					System.out.println("|----------------------------------------------------------------");
 					servidorController.deletarUsuario(clientSocket, request);
+					break;
+					
+				case "consultarUsuariosAdmin":
+					System.out.println("|----------------------------------------------------------------");
+					System.out.println("|operação consultar usuarios como admnistrador recebida com sucesso");
+					System.out.println("|" + stringRequest );
+					System.out.println("|----------------------------------------------------------------");
+					servidorController.consultarTodosUsuarios(clientSocket, request);
+					break;
+					
+				case "consultarUsuarioAdmin":
+					System.out.println("|----------------------------------------------------------------");
+					System.out.println("|operação consultar um usuario como admnistrador recebida com sucesso");
+					System.out.println("|" + stringRequest );
+					System.out.println("|----------------------------------------------------------------");
+					servidorController.consultarUsuarioAdmin(clientSocket, request);
+					break;
+					
+				case "atualizarUsuarioAdmin":
+					System.out.println("|----------------------------------------------------------------");
+					System.out.println("|operação atualizar usuario como admnistrador recebida com sucesso");
+					System.out.println("|" + stringRequest );
+					System.out.println("|----------------------------------------------------------------");
+					servidorController.atualizarUsuarioAdmin(clientSocket, request);
+					break;
+					
+				case "deletarUsuarioAdmin":
+					System.out.println("|----------------------------------------------------------------");
+					System.out.println("|operação atualizar usuario como admnistrador recebida com sucesso");
+					System.out.println("|" + stringRequest );
+					System.out.println("|----------------------------------------------------------------");
+					servidorController.deletarUsuarioAdmin(clientSocket, request);
 					break;
 				}
 			}
