@@ -211,14 +211,14 @@ public class ServidorController {
 			if(validado) {
 				String chaveConexao = obterChaveConexao(socket);
 				
-				// Requisito: Limite de 3 usuários logados simultaneamente no servidor
+				// Limite de 4 usuários logados simultaneamente no servidor
 				boolean jaLogadoNestaConexao = sessoesAtivas.containsKey(chaveConexao);
 				
-				if (!jaLogadoNestaConexao && sessoesAtivas.size() >= 3) {
+				if (!jaLogadoNestaConexao && sessoesAtivas.size() >= 4) {
 					JsonObject resposta = new JsonObject();
 					resposta.addProperty("resposta", "401");
-					resposta.addProperty("mensagem", "Limite de 3 usuarios logados simultaneamente atingido.");
-					System.out.println("Falha no login: Limite de 3 usuarios concorrentes atingido.");
+					resposta.addProperty("mensagem", "Limite de 4 usuarios logados simultaneamente atingido.");
+					System.out.println("Falha no login: Limite de 4 usuarios concorrentes atingido.");
 					saida.println(gson.toJson(resposta));
 					return;
 				}
@@ -370,7 +370,6 @@ public class ServidorController {
 		try {
 			PrintWriter saida = new PrintWriter(socket.getOutputStream(), true);
 			JsonObject resposta = new JsonObject();
-			
 			String chaveConexao = obterChaveConexao(socket);
 			SessaoCliente sessao = sessoesAtivas.get(chaveConexao);
 			
@@ -830,13 +829,14 @@ public class ServidorController {
 			}
 			
 			JsonArray listaUsuariosLogadosJson = new JsonArray();
+			List<String>usuariosLogados = new ArrayList<String>();
 			for (SessaoCliente s : sessoesAtivas.values()) {
 				listaUsuariosLogadosJson.add(s.getUsuario());
+				usuariosLogados.add(s.getUsuario());
 			}
 			
 			resposta.addProperty("resposta", "200");
 			resposta.add("lista_usuarios", listaUsuariosLogadosJson);
-			
 			System.out.println("Lista de usuarios logados requisitada por: " + sessaoRemetente.getUsuario());
 			saida.println(gson.toJson(resposta));
 			
