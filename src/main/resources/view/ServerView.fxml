@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: #2F3136;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ServerViewController">
+   <top>
+      <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="ChatMensagemServer - Painel de Controle" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label text="Gerencie e monitore conexões de clientes em tempo real" textFill="#b9bbbe">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+   </top>
+   <center>
+      <VBox spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #36393F; -fx-background-radius: 8;">
+               <children>
+                  <Label text="Porta do Servidor:" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="portField" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #40444B; -fx-text-fill: white; -fx-background-radius: 4;" text="12345" />
+                  <Button fx:id="startBtn" mnemonicParsing="false" onAction="#handleStartServer" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #43B581; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="Iniciar Servidor" />
+                  <Button fx:id="stopBtn" disable="true" mnemonicParsing="false" onAction="#handleStopServer" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F04747; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-cursor: hand;" text="Parar Servidor" />
+                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="statusLabel" style="-fx-background-color: #F04747; -fx-background-radius: 12; -fx-padding: 5 12 5 12;" text="OFFLINE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </HBox>
+            <VBox spacing="5.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label text="Console de Logs em Tempo Real" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="logArea" editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-control-inner-background: #202225; -fx-text-fill: #8E9297; -fx-font-family: 'Consolas', 'Courier New', monospace; -fx-font-size: 13;" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

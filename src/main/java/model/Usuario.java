@@ -5,8 +5,7 @@ public class Usuario {
 	private String nome = null;
 	private String usuario = null;
 	private String senha = null;
-	private String token = null;
-	
+		
 	public Usuario() {
 		super();
 		
@@ -36,12 +35,5 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
 	
 }
