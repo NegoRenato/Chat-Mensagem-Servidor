@@ -35,7 +35,7 @@ Após a conexão, o Servidor é capaz de processar as seguintes requisições:
 
 ## 🚀 Como Executar o Projeto
  ### VsCode
- |Execute o comando > git clone https://github.com/NegoRenato/Chat-Mensagem-Servidor| 
+ |Execute o comando > git clone https://github.com/NegoRenato/Chat-Mensagem-Servidor | 
  |apos executar o comando abra o vscode na pasta clonada, abra o terminal e execute o seguinte comando > cd protocolo-cliente-servidor| 
  |depois execute o comando para compilar o codigo > javac *.java| 
  |e então execute o comando para rodar a aplicação > java Servidor|
