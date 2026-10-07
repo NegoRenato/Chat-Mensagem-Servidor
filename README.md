@@ -1,26 +1,46 @@
 # 💬 Protocolo Cliente-Servidor (Sistema de Chat)
 
-## Visão geral (Tema)
-O projeto consiste em um aplicativo de troca de mensagens baseado na arquitetura cliente-servidor. O Servidor recebe uma requisição do Cliente, que processa as chamadas e retorna a resposta adequada. A comunicação é realizada via sockets utilizando o protocolo TCP, o que garante a confiabilidade e a entrega ordenada dos pacotes (diferentemente do UDP).
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![JSON](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
 
-  O Servidor espera a conexão de um ou mais cliente na porta porta que lhe foi especificada.
+## 📌 Visão Geral
+Este projeto consiste em um aplicativo de troca de mensagens baseado na arquitetura **cliente-servidor**. 
 
-## Funcionalidades
-O Servidor possui as seguintes funcionalidades.
-Aguardando Conexão: Quando o usuario iniciar o servidor, ele devera especificar o numero da porta, apos especificado o servidor fica esperando de uma ate tres conexao do cliente.
-Processar Requisições: Apos um Cliente logado o Servidor processa as seguintes requisições.
-  Cadastrar Usuario: Quando o cliente manda a requisição de cadastrar um usuario, o servidor processa a requisição e analisa se o cadastro esta tudo nos conforme         avaliando se o cliente compriu as regras de que, o nome de usuario nao pode conter caracteres especiais e deve ter mais de 5 caracteres e ate 20,se o nome comum        possui de 5 ate 20 caracteres e se a senha e numerica e ate 6 caracteres.
+A comunicação é realizada via **Sockets** utilizando o protocolo **TCP**, o que garante a confiabilidade e a entrega ordenada dos pacotes de dados. O Servidor aguarda conexões em uma porta específica, recebe requisições dos Clientes, processa as chamadas e retorna a resposta adequada.
 
-  Login: Quando o cliente manda a requisição de login, o servidor processa a requisição e analisa se esta cumprindo as regras de nome de usuario e senha, e se estiver    tudo certo ele, consulta se aquele usuario existe no sistema, caso não exista uma mensagem de erro e retornada a ele, caso exista o servidor retorna uma mensagem de    sucesso e seu token.
+---
 
-  Consultar Usuario: Quando o cliente manda a requisição de consultar usuario, o servidor processa a requisição e analisa se o token que foi lhe mandado esta ativo no    sistema e se ele corresponde ao usuario, caso nao cumpra as regras uma mensagem de erro e retornado, caso ele cumpra as regras uma mensagem de sucesso e retornado ao   usuarios e seus dados.
+## ⚙️ Funcionalidades do Servidor
 
-  Atualizar Usuario: Quando o cliente manda a requisição de atualizar usuario, o servidor processa a requisição e analisa se o token que foi lhe mandado esta ativo no    sistema e se ele corresponde ao usuario, caso nao cumpra as regras uma mensagem de erro e retornado, caso ele cumpra as regras o servidor analisa se o que o cliente    pediu para alterar cumpre as regras de validação, caso nao cumpra uma mensagem de erro e retornado, caso cumpra e retornado uma mensagem de sucesso e altera aquilo     que o cliente especificou.
+O sistema suporta múltiplas operações, gerenciadas pelo Servidor através de validações rigorosas e autenticação por tokens.
 
-  Deletar Usuario: Quando o cliente manda a requisição de excluir usuario, o servidor processa a requisição e analisa se o token que foi lhe mandado esta ativo no        sistema e se ele corresponde ao usuario, caso nao cumpra as regras uma mensagem de erro e retornado, caso ele cumpra as regras o servidor exclui o cadastro do          usuario do sistema.
+### 🔌 Inicialização e Conexão
+- **Aguardando Conexão:** Ao iniciar, o usuário define a porta de operação. O Servidor fica então em estado de escuta, suportando de 1 a 3 conexões simultâneas de clientes.
 
-  Logout: Quando o cliente manda a requisição de logout, o servidor processa a requsição e analisa se token que foi lhe mandado esta ativo no sistema e se ele            corresponde ao usuario, caso nao cumpra as regras uma mensagem de erro e retornado, caso ele cumpra as regras o servidor o usuario e deslogado do sistema e o token     e desativado.
+### 🔄 Processamento de Requisições
+Após a conexão, o Servidor é capaz de processar as seguintes requisições:
 
-  Enviar Mensagem: Quando o cliente manda a requisição de enviar mensagem, o servidor processa a requisição e analisa se token que foi lhe mandado esta ativo no          sistema e se ele corresponde ao usuario, caso nao cumpra as regras uma mensagem de erro e retornado, caso ele cumpra as regras o servidor envia a mensagem do           remetente para o destinatario.
+| Requisição | Descrição e Regras de Validação |
+| :--- | :--- |
+| 📝 **Cadastrar Usuário** | Valida se o *nome de usuário* possui entre 6 e 20 caracteres e não contém caracteres especiais. Verifica se o *nome comum* tem entre 5 e 20 caracteres e se a *senha* é estritamente numérica com até 6 dígitos. |
+| 🔐 **Login** | Verifica as credenciais fornecidas. Se o usuário existir e os dados estiverem corretos, retorna uma mensagem de sucesso junto com um **Token de Autenticação**. Caso contrário, retorna um erro. |
+| 🔍 **Consultar Usuário** | Exige um Token ativo válido. Se autenticado, retorna os dados cadastrais do usuário correspondente. |
+| ✏️ **Atualizar Usuário** | Exige um Token ativo válido. Valida os novos dados enviados de acordo com as regras de cadastro. Se aprovado, atualiza as informações no sistema e retorna sucesso. |
+| 🗑️ **Deletar Usuário** | Exige um Token ativo válido. Se autenticado, exclui permanentemente o cadastro do usuário do sistema. |
+| 🚪 **Logout** | Exige um Token ativo válido. Desconecta o usuário do sistema e invalida (desativa) o seu Token. |
+| ✉️ **Enviar Mensagem** | Exige um Token ativo válido. Processa a mensagem enviada pelo remetente e a encaminha para o destinatário correto. |
+| 👥 **Listar Logados** | Exige um Token ativo válido. Retorna uma lista com todos os usuários que estão online no sistema no momento. |
 
-  Listar usuarios Logados: Quando o cliente manda a requisição de enviar mensagem, o servidor processa a requisição e analisa se token que foi lhe mandado esta ativo     no sistema e se ele corresponde ao usuario, caso nao cumpra as regras uma mensagem de erro e retornado, caso ele cumpra as regras o servidor retorna os usuarios        logados.
+---
+
+## 🚀 Como Executar o Projeto
+ ### VsCode
+ Execute o comando > git clone https://github.com/NegoRenato/Chat-Mensagem-Servidor
+ apos executar o comando abra o vscode na pasta clonada, abra o terminal e execute o seguinte comando > cd protocolo-cliente-servidor
+ depois execute o comando para compilar o codigo > javac *.java
+ e então execute o comando para rodar a aplicação > java Servidor
+
+### 1️⃣ Pré-requisitos
+Certifique-se de ter o **Java JDK 11** (ou superior) instalado na sua máquina. Para verificar, abra o terminal e digite:
+```bash
+java -version
